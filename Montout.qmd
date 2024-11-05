@@ -194,8 +194,14 @@ grade_avg_wider
 ### Q13
 
 ```{r}
-
+ggplot(grade_avg_wider, aes(`Airship Piloting and Navigation`,`Clockwork Automata and Robotics`))+
+  geom_point(alpha=0.5)
 ```
 
 
-###
+### Q15
+```{r}
+ggplot(grade_avg_wider, aes(`Alchemy and Chemical Engineering`, `Electrical Engineering and Telegraphy`))+
+  geom_point(alpha=0.5)
+```
+
