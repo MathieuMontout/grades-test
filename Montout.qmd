@@ -22,4 +22,94 @@ library(vroom)
 ```{r}
 here::i_am("grades-test_lab2.Rproj")
 grades <- vroom(here("grades.csv"))
-``
+```
+
+# 2 Simple analyses
+
+### Q2
+
+```{r}
+num = nrow(grades)
+cat(sprintf("The data set contains %d grades.",num))
+
+```
+
+
+### Q3
+
+```{r}
+ num_stud_data <-grades|>
+  distinct(id)|>
+  nrow()
+cat(sprintf("The data set contains %d grades.",num_stud_data))
+```
+
+
+```{r}
+
+num_stu = grades|>
+  distinct(id)|>
+  summarise(
+    n()
+  )
+cat(sprintf("The data set contains %d grades.", as.character(num_stu)))
+```
+
+
+### Q4
+
+```{r}
+students <- grades|>
+  distinct(id, .keep_all = TRUE)|>
+  select(id,group,grade)
+students|>
+  slice(1:10)
+```
+
+### Q5
+
+```{r}
+students_2 <- students|>
+  group_by(group)|>
+  summarise(
+    num = n()
+  )
+
+  
+```
+
+```{r}
+ggplot(students_2, aes(x=group, y=num, fill=group))+
+         geom_line()+
+  labs(title = "Number of Students per Group",
+       x = "Group",
+       y = "Number of Students") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+
+### Q6
+
+```{r}
+avg_group<-grades|>
+  filter(course=="Electrical Engineering and Telegraphy")|>
+  group_by(group)|>
+  summarise(
+    mean = mean(grade)
+  )
+```
+
+
+```{r}
+ggplot(avg_group, aes(group, mean))+
+         geom_col()
+```
+
+
+### Q7
+```{r}
+
+```
+
+
