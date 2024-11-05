@@ -3,3 +3,23 @@ title: "Montout"
 author: "Mathieu Montout"
 format: html
 ---
+
+# 1 intro
+```{r}
+#loading of the packages
+library(ggplot2)
+library(here)
+library(dplyr)
+library(tidyr)
+library(vroom)
+```
+
+## 1.1 Study organisation
+
+## 1.2 Data set
+
+### Q1
+```{r}
+here::i_am("grades-test_lab2.Rproj")
+grades <- vroom(here("grades.csv"))
+``
