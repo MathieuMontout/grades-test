@@ -52,7 +52,7 @@ num_stu = grades|>
   summarise(
     n()
   )
-cat(sprintf("The data set contains %d grades.", as.character(num_stu)))
+cat(sprintf("The data set contains %d grades.", num_stud_data))
 ```
 
 ### Q4
@@ -109,7 +109,7 @@ ggplot(avg_group, aes(group, mean))+
 
 ```
 
-##Exo 3
+## 3 Attendance analysis
 
 ### Q8
 
@@ -155,5 +155,37 @@ grades_fashion_graph<-grades_fashion|>
 ggplot(grades_fashion_graph,aes(grade,num_student))+
   geom_col()
 ```
+
+###Q11
+
+```{r}
+
+```
+
+
+## 4 Grade Analysis 
+
+### Q12
+
+```{r}
+grades|>
+  group_by(id,group)|>
+  mutate(mean = mean(grade))|>
+  distinct(id, .keep_all = TRUE)
+```
+
+```{r}
+grades|>
+  group_by(id,group)|>
+  mutate(mean = mean(grade))|>
+  distinct(id, .keep_all = TRUE)|>
+  pivot_wider(
+    names_from = course,
+    values_from = mean
+  )|>
+  select(-module,-grade)
+
+```
+
 
 
