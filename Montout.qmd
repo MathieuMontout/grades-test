@@ -166,26 +166,36 @@ ggplot(grades_fashion_graph,aes(grade,num_student))+
 ## 4 Grade Analysis 
 
 ### Q12
+```{r}
+grades
+```
+
 
 ```{r}
-grades|>
-  group_by(id,group)|>
+grade_avg<-grades|>
+  group_by(id, course)|>
   mutate(mean = mean(grade))|>
-  distinct(id, .keep_all = TRUE)
+  distinct(id, .keep_all = TRUE)|>
+  select(-module,-grade)
+grade_avg
 ```
 
 ```{r}
-grades|>
-  group_by(id,group)|>
-  mutate(mean = mean(grade))|>
-  distinct(id, .keep_all = TRUE)|>
+grade_avg_wider <-grade_avg|>
   pivot_wider(
     names_from = course,
     values_from = mean
-  )|>
-  select(-module,-grade)
-
+  )
+grade_avg_wider
 ```
 
 
 
+### Q13
+
+```{r}
+
+```
+
+
+###
