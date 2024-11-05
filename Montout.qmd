@@ -132,12 +132,28 @@ grades|>
 ### Q9
 
 ```{r}
-grades|>
+grades_fashion <- grades|>
   filter(course=="Fashion Design and Textile Innovation")|>
   group_by(id,group)|>
-  summarise(n(), .groups = 'drop')|>
+  summarise(grade = n(), .groups = 'drop')
+
+grades_fashion|>
   slice(1:10)
 ```
 
+
+### Q10
+
+```{r}
+grades_fashion_graph<-grades_fashion|>
+  group_by(grade)|>
+  summarise(num_student = n())
+```
+
+
+```{r}
+ggplot(grades_fashion_graph,aes(grade,num_student))+
+  geom_col()
+```
 
 
