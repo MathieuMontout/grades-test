@@ -5,6 +5,7 @@ format: html
 ---
 
 # 1 intro
+
 ```{r}
 #loading of the packages
 library(ggplot2)
@@ -19,6 +20,7 @@ library(vroom)
 ## 1.2 Data set
 
 ### Q1
+
 ```{r}
 here::i_am("grades-test_lab2.Rproj")
 grades <- vroom(here("grades.csv"))
@@ -34,7 +36,6 @@ cat(sprintf("The data set contains %d grades.",num))
 
 ```
 
-
 ### Q3
 
 ```{r}
@@ -43,7 +44,6 @@ cat(sprintf("The data set contains %d grades.",num))
   nrow()
 cat(sprintf("The data set contains %d grades.",num_stud_data))
 ```
-
 
 ```{r}
 
@@ -54,7 +54,6 @@ num_stu = grades|>
   )
 cat(sprintf("The data set contains %d grades.", as.character(num_stu)))
 ```
-
 
 ### Q4
 
@@ -88,7 +87,6 @@ ggplot(students_2, aes(x=group, y=num, fill=group))+
   theme(legend.position = "none")
 ```
 
-
 ### Q6
 
 ```{r}
@@ -100,16 +98,46 @@ avg_group<-grades|>
   )
 ```
 
-
 ```{r}
 ggplot(avg_group, aes(group, mean))+
          geom_col()
 ```
 
-
 ### Q7
+
 ```{r}
 
 ```
+
+##Exo 3
+
+### Q8
+
+```{r}
+grades|>
+  group_by(id,group)|>
+  summarise(n(), .groups = 'drop')|>
+  slice(1:10)
+```
+
+```{r}
+grades|>
+  group_by(id,group)|>
+  summarise(t = n(), .groups = 'drop')|>
+  summarise(min(t),, max(t),mean(t), median(t))
+
+
+```
+
+### Q9
+
+```{r}
+grades|>
+  filter(course=="Fashion Design and Textile Innovation")|>
+  group_by(id,group)|>
+  summarise(n(), .groups = 'drop')|>
+  slice(1:10)
+```
+
 
 
